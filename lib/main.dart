@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transactions_app/transactions/transactions_view.dart';
+import 'features/transactions/transactions_view.dart';
 
 void main() {
   runApp(MyApp());

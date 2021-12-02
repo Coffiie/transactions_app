@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
+import 'package:transactions_app/features/transactions/transaction_details/transaction_details_view.dart';
 import 'package:transactions_app/models/api/transaction.dart';
-import 'package:transactions_app/services/navigation_service.dart';
+import 'package:transactions_app/repositories/transactions_repository.dart';
 import 'package:transactions_app/services/transaction_service.dart';
-import 'package:transactions_app/services/transactions_controller.dart';
 
 class TransactionsViewModel extends BaseViewModel {
   List<Transaction> _transactions = [];
@@ -18,16 +19,16 @@ class TransactionsViewModel extends BaseViewModel {
 
   Future<void> init() async {
     setBusy(true);
-    _transactions = await TransactionsController().getTransactions(Dio());
+    _transactions = await TransactionsRepository().getTransactions();
     searchedTransactions =
         TransactionService().sortByTransactionTime(_transactions);
     setBusy(false);
   }
 
-  void handleTap(BuildContext context, int index) => NavigationService()
-      .navigateToTransactionDetailsView(context, _searchedTransactions[index]);
+  void onTap(BuildContext context, int index) => Get.to(
+      () => TransactionDetailsView(transaction: _searchedTransactions[index]));
 
-  void handleSearch(String text) {
+  void onSearch(String text) {
     searchedTransactions =
         TransactionService().searchByTransactionType(_transactions, text);
   }

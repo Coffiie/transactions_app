@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:transactions_app/features/transactions/transactions_viewmodel.dart';
 import 'package:transactions_app/global/utils.dart';
-import 'package:transactions_app/transactions/transactions_viewmodel.dart';
 
 class TransactionsView extends StatelessWidget {
   const TransactionsView({Key? key}) : super(key: key);
@@ -11,42 +11,39 @@ class TransactionsView extends StatelessWidget {
     return ViewModelBuilder<TransactionsViewModel>.reactive(
       viewModelBuilder: () => TransactionsViewModel(),
       onModelReady: (m) async => await m.init(),
-      builder: (context, model, _) => Scaffold(
+      builder: (context, transactionsViewModel, _) => Scaffold(
         appBar: AppBar(
           title: Container(
             color: Colors.white,
             padding: const EdgeInsets.all(3),
             child: TextField(
-              onChanged: (String text){
-                model.handleSearch(text);
-              },
-              decoration: InputDecoration(
-                hintText: 'Search by transaction type'
-              ),
+              onChanged: (String text) => transactionsViewModel.onSearch(text),
+              decoration:
+                  InputDecoration(hintText: 'Search by transaction type'),
             ),
           ),
         ),
-        body: model.isBusy
+        body: transactionsViewModel.isBusy
             ? Center(
                 child: CircularProgressIndicator(),
               )
             : ListView.builder(
-                itemCount: model.searchedTransactions.length,
+                itemCount: transactionsViewModel.searchedTransactions.length,
                 itemBuilder: (context, i) => Card(
                       elevation: 3,
                       child: ListTile(
-                        onTap: () {
-                          model.handleTap(context, i);
-                        },
+                        onTap: () => transactionsViewModel.onTap(context, i),
                         title: Text(
-                            '${model.searchedTransactions[i].currencyCode} ${model.searchedTransactions[i].amount}'),
+                            '${transactionsViewModel.searchedTransactions[i].currencyCode} ${transactionsViewModel.searchedTransactions[i].amount}'),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              model.searchedTransactions[i].type,
+                              transactionsViewModel
+                                  .searchedTransactions[i].type,
                             ),
-                            Text(Utils.formatDate(model.searchedTransactions[i].date)),
+                            Text(Utils.formatDate(transactionsViewModel
+                                .searchedTransactions[i].date)),
                           ],
                         ),
                       ),

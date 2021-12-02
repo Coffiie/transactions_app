@@ -22,16 +22,17 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
-  dio: ^4.0.0
+  dio: ^4.0.4
   flutter:
     sdk: flutter
+  get: ^4.5.1
   intl: ^0.17.0
-  stacked: ^2.2.5
+  stacked: ^2.2.7+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.0.15
+  mockito: ^5.0.16
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -6,8 +6,7 @@ class TransactionService {
           List<Transaction> transactions, String text) =>
       transactions.where((e) => e.type.contains(text)).toList();
 
-  List<Transaction> sortByTransactionTime(
-      List<Transaction> transactions) {
+  List<Transaction> sortByTransactionTime(List<Transaction> transactions) {
     transactions.sort(
         (a, b) => Utils.formatDate(a.date).compareTo(Utils.formatDate(b.date)));
     return transactions;

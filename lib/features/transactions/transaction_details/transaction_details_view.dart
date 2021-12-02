@@ -15,8 +15,12 @@ class TransactionDetailsView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('AMOUNT: ${transaction.currencyCode} ${transaction.amount}',),
-              Text('IBAN: ${transaction.id}',),
+              Text(
+                'AMOUNT: ${transaction.currencyCode} ${transaction.amount}',
+              ),
+              Text(
+                'IBAN: ${transaction.id}',
+              ),
               Text('BIC: ${transaction.bic}'),
               Text('Description: ${transaction.description}')
             ],
