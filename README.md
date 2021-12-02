@@ -1,16 +1,17 @@
-# transactions_app
+# Sample Flutter App With MVVM
 
-A new Flutter project.
+This app basically shows us how to make flutter apps using MVVM scalable and reusable.
 
-## Getting Started
+## Some must knows about what this app is trying to achieve
 
-This project is a starting point for a Flutter application.
+- Views are dumb and stateless.
+- Viewmodels wrap / bind around views and should only be used for state management of the views. Viewmodels should not make any api calls. Viewmodels may call other service methods.
+- Viewmodels should only communicate with repository for data needs.
+- Repositories are the single source of truth. Repositories should always reflect authentic and trustworthy data.
+- Repositories decide whether the app needs to fetch data from the api or from the local storage.
+- Repositories may not directly make api calls, however, repositories may call other services that may call apis.
+- If a pattern repeats twice, that is code duplication. Such patterns should be moved either to their required classes, or if they dont belong in any, should be moved to a helper class.
 
-A few resources to get you started if this is your first Flutter project:
+If you have an opinion or another useful pattern, I would love to hear about it! Just send me a DM on my LinkedIn.
+https://www.linkedin.com/in/rawahamuhammad/
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
