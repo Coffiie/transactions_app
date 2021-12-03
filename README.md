@@ -1,6 +1,6 @@
 # Sample Flutter App With MVVM
 
-This app basically shows us how to make flutter apps using MVVM scalable and reusable.
+This app tries to achieve MVVM for scalable and reusable flutter apps.
 
 ## Some must knows about what this app is trying to achieve
 
